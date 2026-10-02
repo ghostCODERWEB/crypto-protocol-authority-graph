@@ -1,0 +1,71 @@
+{
+  "nodes": [
+    {
+      "id": "alice",
+      "kind": "principal"
+    },
+    {
+      "id": "bob",
+      "kind": "principal"
+    },
+    {
+      "id": "carol",
+      "kind": "principal"
+    },
+    {
+      "id": "safe",
+      "kind": "role"
+    },
+    {
+      "id": "upgrade",
+      "kind": "capability"
+    }
+  ],
+  "rules": [
+    {
+      "id": "2of3",
+      "sources": [
+        "alice",
+        "bob",
+        "carol"
+      ],
+      "target": "safe",
+      "threshold": 2,
+      "delay": 0
+    },
+    {
+      "id": "timelock",
+      "sources": [
+        "safe"
+      ],
+      "target": "upgrade",
+      "threshold": 1,
+      "delay": 100
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "one-key",
+      "compromised": [
+        "alice"
+      ],
+      "horizon": 200
+    },
+    {
+      "name": "two-keys-early",
+      "compromised": [
+        "alice",
+        "bob"
+      ],
+      "horizon": 50
+    },
+    {
+      "name": "two-keys-late",
+      "compromised": [
+        "alice",
+        "bob"
+      ],
+      "horizon": 200
+    }
+  ]
+}

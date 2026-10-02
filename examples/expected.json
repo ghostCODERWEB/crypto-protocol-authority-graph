@@ -1,0 +1,83 @@
+{
+  "model": "threshold hypergraph closure with per-edge maturity",
+  "rule_count": 2,
+  "scenarios": [
+    {
+      "derivations": [],
+      "exposed_capabilities": [],
+      "horizon": 200,
+      "name": "one-key",
+      "reachable_nodes": [
+        "alice"
+      ]
+    },
+    {
+      "derivations": [
+        {
+          "delay": 0,
+          "rule": "2of3",
+          "target": "safe",
+          "witnesses": [
+            "alice",
+            "bob"
+          ]
+        }
+      ],
+      "exposed_capabilities": [],
+      "horizon": 50,
+      "name": "two-keys-early",
+      "reachable_nodes": [
+        "alice",
+        "bob",
+        "safe"
+      ]
+    },
+    {
+      "derivations": [
+        {
+          "delay": 0,
+          "rule": "2of3",
+          "target": "safe",
+          "witnesses": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "delay": 100,
+          "rule": "timelock",
+          "target": "upgrade",
+          "witnesses": [
+            "safe"
+          ]
+        }
+      ],
+      "exposed_capabilities": [
+        "upgrade"
+      ],
+      "horizon": 200,
+      "name": "two-keys-late",
+      "reachable_nodes": [
+        "alice",
+        "bob",
+        "safe",
+        "upgrade"
+      ]
+    }
+  ],
+  "single_principal_blast_radius": [
+    {
+      "exposed_capabilities": [],
+      "principal": "alice"
+    },
+    {
+      "exposed_capabilities": [],
+      "principal": "bob"
+    },
+    {
+      "exposed_capabilities": [],
+      "principal": "carol"
+    }
+  ],
+  "unused_nodes": []
+}
